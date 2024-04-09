@@ -36,7 +36,7 @@ export default function UserList() {
               as="a"
               size="sm"
               fontSize="sm"
-              colorScheme="messenger"
+              colorScheme="pink"
               leftIcon={<Icon as={RiAddLine} fontSize="20" />}
             >
               Criar novo
