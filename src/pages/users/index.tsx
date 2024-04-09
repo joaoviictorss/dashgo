@@ -16,6 +16,7 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
+import Link from "next/link";
 import { RiAddLine, RiPencilLine } from "react-icons/ri";
 
 export default function UserList() {
@@ -32,6 +33,7 @@ export default function UserList() {
               Usuários
             </Heading>
 
+            <Link href='/users/create' passHref>
             <Button
               as="a"
               size="sm"
@@ -41,6 +43,7 @@ export default function UserList() {
             >
               Criar novo
             </Button>
+            </Link>
           </Flex>
 
           <Table colorScheme="whiteAlpha">
