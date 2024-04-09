@@ -33,9 +33,9 @@ export default function UserList() {
               Usuários
             </Heading>
 
-            <Link href='/users/create' passHref>
             <Button
               as="a"
+              href="/users/create"
               size="sm"
               fontSize="sm"
               colorScheme="pink"
@@ -43,7 +43,6 @@ export default function UserList() {
             >
               Criar novo
             </Button>
-            </Link>
           </Flex>
 
           <Table colorScheme="whiteAlpha">
