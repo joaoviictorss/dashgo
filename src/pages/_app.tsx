@@ -3,18 +3,27 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { theme } from "../styles/theme";
 
 import { SidebarDrawerProvider } from "../context/SidebarDrawerContext";
-import { MakerServer } from "@/service/mirage";
+import { MakerServer } from "@/src/services/mirage";
 
-if (process.env.NODE_ENV === 'development') {
-  MakerServer()
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+
+if (process.env.NODE_ENV === "development") {
+  MakerServer();
 }
+
+const queryClient = new QueryClient()
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <ChakraProvider theme={theme}>
-      <SidebarDrawerProvider>
-        <Component {...pageProps} />
-      </SidebarDrawerProvider>
-    </ChakraProvider>
+    <QueryClientProvider client={queryClient}>
+      <ChakraProvider theme={theme}>
+        <SidebarDrawerProvider>
+          <Component {...pageProps} />
+        </SidebarDrawerProvider>
+      </ChakraProvider>
+
+      <ReactQueryDevtools/>
+    </QueryClientProvider>
   );
 }
