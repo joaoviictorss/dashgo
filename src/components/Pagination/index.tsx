@@ -52,40 +52,33 @@ export function Pagination({
       </Box>
       <Stack spacing="2" direction="row">
         //Mostra a primeira página caso esteja na pagina 3 ou +
-        {currentPage > 1 + siblingsCount && (
-          <>
-            <PaginationItem number={1} />
-            {currentPage > 2 + siblingsCount && (
-              <Text color="gray.300" width="8" textAlign="center">
-                ...
-              </Text>
+        { currentPage > (1 + siblingsCount) && (
+               <>
+                  <PaginationItem onPageChange={onPageChange} number={1} />
+                  { currentPage > (2 + siblingsCount) && (
+                     <Text color="gray.300" width="8" textAlign="center">...</Text>
+                  )}
+               </>
             )}
-          </>
-        )}
 
-        {previousPages.length > 0 &&
-          previousPages.map((page) => {
-            return <PaginationItem key={page} number={page} />;
-          })}
+            { previousPages.length > 0 && previousPages.map(page => (
+               <PaginationItem onPageChange={onPageChange} number={page} key={page} />
+            ))}
 
-        <PaginationItem number={currentPage} isCurrent />
+            <PaginationItem onPageChange={onPageChange} number={currentPage} isCurrent />
+     
+            { nextPages.length > 0 && nextPages.map(page => (
+               <PaginationItem onPageChange={onPageChange} number={page} key={page} />
+            ))}
 
-        {previousPages.length > 0 &&
-          nextPages.map((page) => {
-            return <PaginationItem key={page} number={page} />;
-          })}
-
-        // Mostra a ultima pagina caso nao esteja 4 pag antes da last page
-        {currentPage + siblingsCount < lastPage && (
-          <>
-            {currentPage + 1 + siblingsCount < lastPage && (
-              <Text color="gray.300" width="8" textAlign="center">
-                ...
-              </Text>
+            { currentPage + siblingsCount < lastPage && (
+               <>
+                  { (currentPage + 1 + siblingsCount) < lastPage && (
+                     <Text color="gray.300" width="8" textAlign="center">...</Text>
+                  )}
+                  <PaginationItem onPageChange={onPageChange} number={lastPage} />
+               </>
             )}
-            <PaginationItem number={lastPage} />
-          </>
-        )}
       </Stack>
     </Stack>
   );

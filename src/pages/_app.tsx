@@ -5,14 +5,13 @@ import { theme } from "../styles/theme";
 import { SidebarDrawerProvider } from "../context/SidebarDrawerContext";
 import { MakerServer } from "@/src/services/mirage";
 
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { queryClient } from "../services/queryClient";
 
 if (process.env.NODE_ENV === "development") {
   MakerServer();
 }
-
-const queryClient = new QueryClient()
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -23,7 +22,7 @@ export default function App({ Component, pageProps }: AppProps) {
         </SidebarDrawerProvider>
       </ChakraProvider>
 
-      <ReactQueryDevtools/>
+      <ReactQueryDevtools />
     </QueryClientProvider>
   );
 }
